@@ -6,16 +6,17 @@ interface Props {
   text: string;
   color?: string;
   stretch?: boolean;
-  onPress?: () => void;
+  onPress?: (numberText: string) => void;
 }
 
 const CalcButton = ({
   text,
   color = colors.darkGray,
   stretch = false,
+  onPress = () => {},
 }: Props) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => onPress(text)}>
       <View
         style={[
           styles.button,
