@@ -1,22 +1,35 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import colors from '../constants/colors';
 interface Props {
   text: string;
   color?: string;
-  textColor?: string;
+  stretch?: boolean;
   onPress?: () => void;
 }
 
 const CalcButton = ({
   text,
   color = colors.darkGray,
-  textColor = 'white',
+  stretch = false,
 }: Props) => {
   return (
-    <View style={[styles.button, { backgroundColor: color }]}>
-      <Text style={[styles.buttonText, { color: textColor }]}>{text}</Text>
-    </View>
+    <TouchableOpacity>
+      <View
+        style={[
+          styles.button,
+          { backgroundColor: color, width: stretch ? 180 : 80 },
+        ]}>
+        <Text
+          style={{
+            ...styles.buttonText,
+            color: color === colors.lightGray ? 'black' : 'white',
+          }}>
+          {text}
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
